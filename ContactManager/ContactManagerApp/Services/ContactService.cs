@@ -25,6 +25,7 @@ namespace ContactManagerApp.Services
 
             if (index < 0)
             {
+                contacts.Add(contact);
                 fileService.WriteContacts(contacts);
                 return true;
             }
@@ -36,19 +37,16 @@ namespace ContactManagerApp.Services
             return fileService.LoadContacts();
         }
 
-        public bool DeleteContact(string phone)
+        public bool DeleteContact(int index)
         {
             var contacts = fileService.LoadContacts();
 
-            int index = contacts.FindIndex(f => f.Phone == phone);
-
-            if (index >= 0)
-            {
-                contacts.RemoveAt(index);
-                fileService.WriteContacts(contacts);
-                return true;
-            }
-            return false;
+            if (index > contacts.Count)
+               return false;
+                    
+            contacts.RemoveAt(index-1);
+            fileService.WriteContacts(contacts);
+            return true;           
         }
 
         public bool UpdateContact(int index, Contact contact)

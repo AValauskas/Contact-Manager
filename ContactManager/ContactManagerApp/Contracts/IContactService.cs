@@ -9,7 +9,7 @@ namespace ContactManagerApp.Contracts
     {
         public bool AddContact(Contact contact);
         public bool UpdateContact(int index, Contact contact);
-        public bool DeleteContact(string phone);
+        public bool DeleteContact(int index);
         public List<Contact> ContactList();
     }
 }

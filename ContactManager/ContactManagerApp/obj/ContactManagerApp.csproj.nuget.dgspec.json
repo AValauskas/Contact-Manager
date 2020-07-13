@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aurimas\\Desktop\\VISMA\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj": {}
+    "C:\\Users\\Aurimas\\Desktop\\VISMA\\Contact-Manager\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aurimas\\Desktop\\VISMA\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj": {
+    "C:\\Users\\Aurimas\\Desktop\\VISMA\\Contact-Manager\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aurimas\\Desktop\\VISMA\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj",
+        "projectUniqueName": "C:\\Users\\Aurimas\\Desktop\\VISMA\\Contact-Manager\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj",
         "projectName": "ContactManagerApp",
-        "projectPath": "C:\\Users\\Aurimas\\Desktop\\VISMA\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj",
+        "projectPath": "C:\\Users\\Aurimas\\Desktop\\VISMA\\Contact-Manager\\ContactManager\\ContactManagerApp\\ContactManagerApp.csproj",
         "packagesPath": "C:\\Users\\Aurimas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aurimas\\Desktop\\VISMA\\ContactManager\\ContactManagerApp\\obj\\",
+        "outputPath": "C:\\Users\\Aurimas\\Desktop\\VISMA\\Contact-Manager\\ContactManager\\ContactManagerApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,6 +1,7 @@
 ﻿using ContactManagerApp.Contracts;
 using ContactManagerApp.Models;
 using ContactManagerApp.Services;
+using ContactManagerApp.User_interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,17 +17,10 @@ namespace ContactManagerApp
             Console.Clear();
             Console.WriteLine("Creation of new contact \n");
 
-            Console.WriteLine("Enter the name");
-            contact.Name = Console.ReadLine();
-
-            Console.WriteLine("Enter the last name");
-            contact.LastName = Console.ReadLine();
-
-            Console.WriteLine("Enter the phone");
-            contact.Phone = Console.ReadLine();
-
-            Console.WriteLine("Enter the address");
-            contact.Address = Console.ReadLine();
+            contact.Name = Validations.ProcessNameInCreation();
+            contact.LastName = Validations.ProcessLastNameInCreation();
+            contact.Phone = Validations.ProcessPhoneInCreation();        
+            contact.Address = Validations.ProcessAddressInCreation();
 
             if (ContactService.AddContact(contact))
             {
@@ -38,7 +32,7 @@ namespace ContactManagerApp
             }
             Console.WriteLine("\nPress enter to continue operations");
             Console.ReadLine();
-
+            Console.Clear();
         }
 
         public void Update()
@@ -46,8 +40,10 @@ namespace ContactManagerApp
             List();
            
 
-            Console.WriteLine("Write index, which contact should be updated");
-            var index = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nWrite index, which contact should be updated");
+            int index;
+            bool isNumeric = int.TryParse(Console.ReadLine(), out index);
+            // var index = int.Parse(Console.ReadLine());
 
             var contacts = ContactService.ContactList();
             if (index>contacts.Count)
@@ -80,20 +76,28 @@ namespace ContactManagerApp
         public void Delete()
         {
             Console.Clear();
-            
-            Console.WriteLine("Write phone number which should be deleted");
-            var phone = Console.ReadLine();
-           
-            if (ContactService.DeleteContact(phone))
-            {
-                Console.WriteLine("\nContact was sucesfully deleted");
+            List();
+
+            Console.WriteLine("\nWrite contact index which should be deleted, or write any letter to get back");
+            int index;
+            bool isNumeric = int.TryParse(Console.ReadLine(), out index);
+
+            if (index !=0)
+            {         
+                var contacts = ContactService.ContactList();
+
+                if (ContactService.DeleteContact(index))
+                {
+                    Console.WriteLine("\nContact was sucesfully deleted");
+                }
+                else
+                {
+                    Console.WriteLine("\nIndex out of range");
+                }
+                Console.WriteLine("\nPress enter to continue operations");
+                Console.ReadLine();
             }
-            else
-            {
-                Console.WriteLine("\nThere is no such contact");
-            }
-            Console.WriteLine("\nPress enter to continue operations");
-            Console.ReadLine();
+            Console.Clear();
         }
         public void List()
         {
@@ -108,8 +112,7 @@ namespace ContactManagerApp
                 Console.Write(++count+") ");
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine("\nPress enter to continue");
-            Console.ReadLine();
+          
         }
 
         

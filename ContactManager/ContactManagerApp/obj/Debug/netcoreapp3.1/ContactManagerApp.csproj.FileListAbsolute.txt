@@ -11,3 +11,16 @@ C:\Users\Aurimas\Desktop\VISMA\ContactManager\ContactManagerApp\obj\Debug\netcor
 C:\Users\Aurimas\Desktop\VISMA\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Aurimas\Desktop\VISMA\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.csproj.CopyComplete
 C:\Users\Aurimas\Desktop\VISMA\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.csprojAssemblyReference.cache
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\ContactManagerApp.exe
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\ContactManagerApp.deps.json
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\ContactManagerApp.runtimeconfig.json
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\ContactManagerApp.runtimeconfig.dev.json
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\ContactManagerApp.dll
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\ContactManagerApp.pdb
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.csprojAssemblyReference.cache
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.AssemblyInfoInputs.cache
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.AssemblyInfo.cs
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.csproj.CopyComplete
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.dll
+C:\Users\Aurimas\Desktop\VISMA\Contact-Manager\ContactManager\ContactManagerApp\obj\Debug\netcoreapp3.1\ContactManagerApp.pdb
