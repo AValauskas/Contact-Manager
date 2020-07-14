@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ContactManagerApp.Services
 {
-    class FileService : IFileService
+    public class FileService : IFileService
     {
         public List<Contact> LoadContacts()
         {

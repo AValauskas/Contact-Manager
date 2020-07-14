@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManagerApp", "ContactManagerApp\ContactManagerApp.csproj", "{E0D67E21-5A61-4654-B112-B06723F1356F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManagerApp", "ContactManagerApp\ContactManagerApp.csproj", "{E0D67E21-5A61-4654-B112-B06723F1356F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManagerTest", "ContactManagerTest\ContactManagerTest.csproj", "{791FD58C-295F-48C1-8C2C-AE95BFC3E7E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E0D67E21-5A61-4654-B112-B06723F1356F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0D67E21-5A61-4654-B112-B06723F1356F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0D67E21-5A61-4654-B112-B06723F1356F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791FD58C-295F-48C1-8C2C-AE95BFC3E7E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791FD58C-295F-48C1-8C2C-AE95BFC3E7E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791FD58C-295F-48C1-8C2C-AE95BFC3E7E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791FD58C-295F-48C1-8C2C-AE95BFC3E7E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

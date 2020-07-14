@@ -7,9 +7,9 @@ namespace ContactManagerApp.Contracts
 {
     public interface IContactService
     {
-        public bool AddContact(Contact contact);
+        public string AddContact(List<Contact> contacts);
         public bool UpdateContact(int index, Contact contact);
-        public bool DeleteContact(int index);
+        public void DeleteContact(int index);
         public List<Contact> ContactList();
     }
 }

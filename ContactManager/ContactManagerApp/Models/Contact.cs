@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ContactManagerApp.Models
 {
-    public class Contact
+    public class Contact : ICloneable
     {
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -14,6 +14,10 @@ namespace ContactManagerApp.Models
         public override string ToString()
         {
             return String.Format("{0}, {1}, {2}, {3}", this.Name, this.LastName, this.Phone, this.Address);
+        }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

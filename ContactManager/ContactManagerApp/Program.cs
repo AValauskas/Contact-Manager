@@ -38,9 +38,7 @@ namespace ContactManagerApp
                         break;
                     case 'L':
                         ui.List();
-                        Console.WriteLine("\nPress enter to continue");
-                        Console.ReadLine();
-                        Console.Clear();
+                        ui.EndAnOperation();
                         break;
                     case 'X':
                         exit = true;

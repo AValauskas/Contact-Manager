@@ -9,27 +9,33 @@ using System.Reflection;
 
 namespace ContactManagerApp.Services
 {
-    class ContactService : IContactService
+    public class ContactService : IContactService
     {
         public IFileService fileService { get; set; }
 
-        public bool AddContact( Contact contact)
-        {        
-            var contacts = fileService.LoadContacts();
-            if (contacts == null)
+        public string AddContact( List<Contact> contacts)
+        {         
+            var allContacts = fileService.LoadContacts();
+            if (allContacts == null)
             {
-                contacts = new List<Contact>();
+                allContacts = new List<Contact>();
             }
-
-            int index = contacts.FindIndex(f => f.Phone == contact.Phone);
-
-            if (index < 0)
+            string duplicatedPhones = "";
+            foreach (var contact in contacts)
             {
-                contacts.Add(contact);
-                fileService.WriteContacts(contacts);
-                return true;
+                int index = allContacts.FindIndex(f => f.Phone == contact.Phone);
+                if (index < 0)
+                {
+                    allContacts.Add(contact);                    
+                }
+                else
+                {
+                    duplicatedPhones = duplicatedPhones + contact.Phone + ";";
+                }
+
             }
-            return false;
+            fileService.WriteContacts(allContacts);
+            return duplicatedPhones;
         }
 
         public List<Contact> ContactList()
@@ -37,25 +43,32 @@ namespace ContactManagerApp.Services
             return fileService.LoadContacts();
         }
 
-        public bool DeleteContact(int index)
+        public void DeleteContact(int index)
         {
             var contacts = fileService.LoadContacts();
-
-            if (index > contacts.Count)
-               return false;
                     
             contacts.RemoveAt(index-1);
             fileService.WriteContacts(contacts);
-            return true;           
+                
         }
 
         public bool UpdateContact(int index, Contact contact)
-        {
+        {        
             var contacts = fileService.LoadContacts();
 
-            contacts[index-1] = contact;
-            fileService.WriteContacts(contacts);
-            return false;
+            int indexOfDuplicate = contacts.FindIndex(f => f.Phone == contact.Phone);
+            if (indexOfDuplicate < 0 || indexOfDuplicate == index-1)
+            {
+                contacts[index - 1] = contact;
+                fileService.WriteContacts(contacts);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            
         }
     }
 }

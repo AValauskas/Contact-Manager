@@ -12,93 +12,51 @@ namespace ContactManagerApp
     {
         public IContactService ContactService { get; set; }
         public void Create()
-        {
-            Contact contact = new Contact();
+        {            
             Console.Clear();
             Console.WriteLine("Creation of new contact \n");
 
-            contact.Name = Validations.ProcessNameInCreation();
-            contact.LastName = Validations.ProcessLastNameInCreation();
-            contact.Phone = Validations.ProcessPhoneInCreation();        
-            contact.Address = Validations.ProcessAddressInCreation();
+            var contact = FillCreationData();
+            var contacts = SeparatePhones(contact);
 
-            if (ContactService.AddContact(contact))
+            string duplicatedPhones = ContactService.AddContact(contacts);
+            if (duplicatedPhones == "")
             {
                 Console.WriteLine("\nNew Contact was sucesfully added");
             }
             else
             {
-                Console.WriteLine("\nThis phone number is already in list");
+                Console.WriteLine($"\n{duplicatedPhones} out of {contact.Phone} already exist in contacts and was not added");
             }
-            Console.WriteLine("\nPress enter to continue operations");
-            Console.ReadLine();
-            Console.Clear();
+            EndAnOperation();
         }
 
         public void Update()
         {
-            List();
-           
-
-            Console.WriteLine("\nWrite index, which contact should be updated");
-            int index;
-            bool isNumeric = int.TryParse(Console.ReadLine(), out index);
-            // var index = int.Parse(Console.ReadLine());
-
-            var contacts = ContactService.ContactList();
-            if (index>contacts.Count)
+            List();    
+            Console.WriteLine("\nWrite index, which contact should be updated or write any letter to get back");         
+            
+            bool error = true;
+            while (error)
             {
-                Console.WriteLine("Index out of range");
+                error = ProcessUpdateOperation();
             }
-            else
-            {
-                Contact contact = contacts[index - 1];
-
-                Console.WriteLine($"Enter the name, press enter for {contact.Name} ");
-                contact.Name = Console.ReadLine();
-
-                Console.WriteLine($"Enter the last name, press enter for {contact.LastName} ");
-                contact.LastName = Console.ReadLine();
-
-                Console.WriteLine($"Enter the phone, press enter for {contact.Phone} ");
-                contact.Phone = Console.ReadLine();
-
-                Console.WriteLine($"Enter the address, press enter for {contact.Address} ");
-                contact.Address = Console.ReadLine();
-
-                ContactService.UpdateContact(index, contact);
-            }
-            Console.WriteLine("\nPress enter to continue operations");
-            Console.ReadLine();
-
+            EndAnOperation();
         }
 
         public void Delete()
         {
-            Console.Clear();
             List();
+            Console.WriteLine("\nWrite contact index which should be deleted, or write any letter to stop deleting");                     
+            bool error = true;
 
-            Console.WriteLine("\nWrite contact index which should be deleted, or write any letter to get back");
-            int index;
-            bool isNumeric = int.TryParse(Console.ReadLine(), out index);
-
-            if (index !=0)
-            {         
-                var contacts = ContactService.ContactList();
-
-                if (ContactService.DeleteContact(index))
-                {
-                    Console.WriteLine("\nContact was sucesfully deleted");
-                }
-                else
-                {
-                    Console.WriteLine("\nIndex out of range");
-                }
-                Console.WriteLine("\nPress enter to continue operations");
-                Console.ReadLine();
+            while (error)
+            {
+                error = ProcessDeleteOperation();
             }
-            Console.Clear();
+            EndAnOperation();
         }
+
         public void List()
         {
             Console.Clear();
@@ -111,10 +69,118 @@ namespace ContactManagerApp
             {
                 Console.Write(++count+") ");
                 Console.WriteLine(item.ToString());
-            }
-          
+            }          
         }
 
-        
+        private Contact FillCreationData()
+        {
+            Contact contact = new Contact();
+
+            contact.Name = Helpers.ProcessNameInCreation();
+            contact.LastName = Helpers.ProcessLastNameInCreation();
+            contact.Phone = Helpers.ProcessPhoneInCreation();
+            contact.Address = Helpers.ProcessAddressInCreation();
+
+            return contact;
+        }
+
+        private Contact FillUpdateData(int index)
+        {
+            var contacts = ContactService.ContactList();
+
+            Contact contact = contacts[index - 1];
+
+            contact.Name = Helpers.ProcessNameInUpdate(contact.Name);
+            contact.LastName = Helpers.ProcessLastNameInUpdate(contact.LastName);
+            contact.Phone = Helpers.ProcessPhoneInUpdate(contact.Phone);
+            contact.Address = Helpers.ProcessAddressInUpdate(contact.Address);
+
+            return contact;
+        }
+
+        private List<Contact> SeparatePhones(Contact contact)
+        {
+            List<Contact> newContacts = new List<Contact>();
+            string[] phones = contact.Phone.Split(',');
+
+            foreach (var phone in phones)
+            {
+                var separatePhone = (Contact)contact.Clone();
+                separatePhone.Phone = phone;
+                newContacts.Add(separatePhone);
+            }
+
+            return newContacts;
+        }
+
+        public void EndAnOperation()
+        {
+            Console.WriteLine("\nPress enter to get back to operations");
+            Console.ReadLine();
+            Console.Clear();
+        }       
+
+        private bool CheckIfIndexCorrect(int index)
+        {
+            var contacts = ContactService.ContactList();
+            if (index > contacts.Count)
+                return false;
+            return true;
+        }
+
+        private bool ProcessDeleteOperation()
+        {
+            int index;
+            int.TryParse(Console.ReadLine(), out index);
+            if (index == 0)
+            {
+                Console.WriteLine("\nYou clicked to get back \n");
+                return false;
+            }
+
+            if (CheckIfIndexCorrect(index))
+            {
+                ContactService.DeleteContact(index);
+                Console.WriteLine("\nContact was sucesfully deleted");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("\nIndex out of range, write index once again");
+                return true;
+            }        
+        }
+
+        private bool ProcessUpdateOperation()
+        {
+            int index;         
+            int.TryParse(Console.ReadLine(), out index);
+            if (index == 0)
+            {
+                Console.WriteLine("\nYou clicked to get back \n");
+                return false;
+            }
+
+            if (!CheckIfIndexCorrect(index))
+            {
+                Console.WriteLine("\nIndex out of range, write index once again");
+                return true;
+            }
+                
+            var contact = FillUpdateData(index);
+
+            if (ContactService.UpdateContact(index, contact))
+            {
+                Console.WriteLine("\nContact was sucesfully updated");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("\nPhone number already exist");
+                return false;
+            } 
+        }
+
+
     }
 }
